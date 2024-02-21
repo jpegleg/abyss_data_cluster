@@ -1,0 +1,36 @@
+---
+- name: build abyss cluster node
+  hosts: abyss
+  tasks:
+
+  - name: upgrade packages
+    ansible.builtin.apt:
+      name: '*'
+      update_cache: yes
+      state: latest
+    tags: packages
+  
+  - name: enable and start snapd
+    shell: systemctl enable snapd && systemctl start snapd
+    args:
+      executable: /bin/bash
+    tags: snapd
+    
+  - name: install microk8s snap
+    shell:  yes | snap install microk8s --classic 
+    args:
+      executable: /bin/bash
+    tags: snapd
+    
+  - name: enable microk8s plugin cilium
+    shell: microk8s enable cilium
+    args:
+      executable: /bin/bash      
+    tags: cilium
+    
+  - name: enable microk8s plugin dns
+    shell: microk8s enable dns
+    args:
+      executable: /bin/bash
+    tags: dns
+...
