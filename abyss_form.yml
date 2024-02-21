@@ -1,0 +1,44 @@
+- name: use designated control-node to get tokens
+  hosts: control-node
+  tasks:
+
+  - name: register control plane node add command as cadd
+    shell:  microk8s add-node | head -n2 | tail -n1
+    args:
+      executable: /bin/bash
+    register: cadd
+    tags: form
+ 
+  - name: register worker node add command as wadd
+    shell:  microk8s add-node | grep worker | tail -n1
+    args:
+      executable: /bin/bash
+    register: wadd
+    tags: form
+
+  - name: fill hostvar name
+    add_host:
+      name: "cnode"
+      CADD: "{{ cadd.stdout }}"
+      WADD: "{{ wadd.stdout }}"
+    tags: form
+
+- name: add additional control plane nodes
+  hosts: added-control-plane
+  tasks:
+
+  - name: add additional control plane nodes to the cluster
+    shell: "{{ hostvars['cnode']['CADD'] }}"
+    args:
+      executable: /bin/bash
+    tags: form
+
+- name: add worker nodes
+  hosts: workers
+  tasks:
+
+  - name: add worker nodes to the cluster
+    shell: "{{ hostvars['cnode']['WADD'] }}"
+    args:
+      executable: /bin/bash
+    tags: form
