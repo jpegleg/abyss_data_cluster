@@ -25,7 +25,7 @@
   - name: enable microk8s plugin cilium
     shell: microk8s enable cilium
     args:
-      executable: /bin/bash      
+      executable: /bin/bash
     tags: cilium
     
   - name: enable microk8s plugin dns
@@ -33,4 +33,11 @@
     args:
       executable: /bin/bash
     tags: dns
+    
+  - name: enable microk8s plugin kubearmor
+    shell: microk8s enable kubearmor
+    args:
+      executable: /bin/bash
+    tags: kubearmor
+    
 ...
