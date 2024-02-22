@@ -7,7 +7,7 @@ These first steps are in `build_node.yml`, while the forming of three control-pl
 
 The rest attempt to utilize helm charts and third party manifests for the core services:
 
-Tetragon, Hubble, Kand Prometheus are goal systems services for this project.
+Tetragon, Hubble, and Prometheus are goal systems services for this project.
 
 The data service itself by default here is postgresql, and we'll try to include an operator for it here.
 
