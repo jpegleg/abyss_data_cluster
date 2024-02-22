@@ -1,7 +1,7 @@
 # abyss_data_cluster
 
 This repository contains ansible designed for building a 3 node (Ubuntu) kubernetes cluster using microk8s.
-It attempts to utilize the `microk8s enable cilium` mode of installing cilium. It also enables the dns plugin.
+It attempts to utilize the `microk8s enable cilium` mode of installing cilium. It also enables the dns plugin and kubearmor plugin.
 
 These first steps are in `build_node.yml`, while the forming of three control-plane/worker nodes is in `abyss_form.yml`.
 
