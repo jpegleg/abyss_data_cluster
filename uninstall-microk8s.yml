@@ -1,0 +1,10 @@
+---
+- name: uninstall microk8s
+  hosts: abyss
+  tasks:
+
+  - name: uninstall microk8s
+    shell:  snap remove microk8s
+    args:
+      executable: /bin/bash
+...
