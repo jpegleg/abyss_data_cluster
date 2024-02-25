@@ -1,0 +1,10 @@
+---
+- name: install microk8s
+  hosts: abyss
+  tasks:
+
+  - name: reinstall microk8s
+    shell:  snap remove microk8s && sleep 1 && yes | snap install microk8s --classic 
+    args:
+      executable: /bin/bash
+...
