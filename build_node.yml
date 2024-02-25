@@ -22,17 +22,17 @@
       executable: /bin/bash
     tags: snapd
     
-  - name: enable microk8s plugin cilium
-    shell: microk8s enable cilium
+  - name: enable community then cilium reroll network
+    shell: microk8s enable community && microk8s enable cilium
     args:
       executable: /bin/bash
     tags: cilium
     
-  - name: enable microk8s plugin dns
-    shell: microk8s enable dns
+  - name: enable hubble
+    shell: microk8s cilium hubble enable
     args:
       executable: /bin/bash
-    tags: dns
+    tags: hubble
     
   - name: enable microk8s plugin kubearmor
     shell: microk8s enable kubearmor
