@@ -9,7 +9,19 @@
       update_cache: yes
       state: latest
     tags: packages
-  
+
+  - name: install wireguard
+    apt:
+      name: wireguard
+      state: latest
+    tags: packages
+
+  - name: disable ufw 
+    shell: ufw disable && systemctl disable ufw
+    args:
+      executable: /bin/bash
+    tags: ufw
+    
   - name: enable and start snapd
     shell: systemctl enable snapd && systemctl start snapd
     args:
@@ -33,11 +45,5 @@
     args:
       executable: /bin/bash
     tags: hubble
-    
-  - name: enable microk8s plugin kubearmor
-    shell: microk8s enable kubearmor
-    args:
-      executable: /bin/bash
-    tags: kubearmor
     
 ...
