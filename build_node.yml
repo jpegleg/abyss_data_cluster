@@ -34,16 +34,11 @@
       executable: /bin/bash
     tags: snapd
     
-  - name: enable community then cilium reroll network
-    shell: microk8s enable community && microk8s enable cilium
+  - name: enable community 
+    shell: microk8s enable community
     args:
       executable: /bin/bash
     tags: cilium
     
-  - name: enable hubble
-    shell: microk8s cilium hubble enable
-    args:
-      executable: /bin/bash
-    tags: hubble
     
 ...
